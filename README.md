@@ -1,5 +1,4 @@
 # Breakout
-=======
 ### About
 Breakout is a simple 2D video game, originally published by Atari in 1976.
 
