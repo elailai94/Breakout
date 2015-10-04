@@ -16,3 +16,9 @@ make clean
 ```Bash
 ./breakout
 ```
+
+### Known Issues
+- X11 library has memory leaks.
+
+### License
+FloodIt is licensed under the [MIT license](https://github.com/elailai94/Breakout/blob/master/LICENSE.md).
