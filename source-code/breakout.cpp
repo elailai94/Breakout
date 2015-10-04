@@ -1017,42 +1017,42 @@ void eventLoop(XInfo &xinfo) {
             case KeyPress:
 	       handleKeyPress(*paddle, *ball, xinfo, event, release, quit);
 	       break;
-	        case ButtonPress:
-	           if (splashScreen) {
-			   	  splashScreen = false;
-			   } else {
-			   	  release = true;
-			   } // if
-		 	   break;
-			case EnterNotify:
-			   inside = true;
-			   break;
-			case LeaveNotify:
-			   inside = false;
-			   break;
-			case MotionNotify:
-			   if (!splashScreen) {
-			      handleMotion(*paddle, *ball, xinfo, event, inside, release);
-			   } // if
-			   break;
-			case ConfigureNotify:
-			   if (splashScreen) {
-			   	  handleResize(splashScreenDVector, xinfo, event, release);
-			   } else {
-			   	  handleResize(gameScreenDVector, xinfo, event, release);
-			   } // if
+	    case ButtonPress:
+	       if (splashScreen) {
+		  splashScreen = false;
+	       } else {
+		  release = true;
+	       } // if
+	       break;
+	    case EnterNotify:
+	       inside = true;
+	       break;
+	    case LeaveNotify:
+	       inside = false;
+	       break;
+	    case MotionNotify:
+	       if (!splashScreen) {
+	          handleMotion(*paddle, *ball, xinfo, event, inside, release);
+	       } // if
+	       break;
+	    case ConfigureNotify:
+	       if (splashScreen) {
+	          handleResize(splashScreenDVector, xinfo, event, release);
+	       } else {
+		  handleResize(gameScreenDVector, xinfo, event, release);
+	       } // if
                break;
             case Expose:
                if (event.xexpose.count == 0) {
                	  if (splashScreen) {
                	     repaint(splashScreenDVector, xinfo);
                	  } else {
-               	  	 repaint(gameScreenDVector, xinfo);
+               	     repaint(gameScreenDVector, xinfo);
                	  } // if
                } // if
                break;
-		  } // switch
-	  } // if
+	} // switch
+      } // if
 
       if (splashScreen) {
       	 repaint(splashScreenDVector, xinfo);
