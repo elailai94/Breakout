@@ -874,19 +874,19 @@ void handleKeyPress(Paddle &paddle, Ball &ball, XInfo &xinfo,
          quit = true;
       } else if (key == XK_a) {
 	 paddle.follow(xinfo, paddle.getX() - (paddle.getLength() / 3));
-	  	 if (!release) {
-	  	 	ball.follow(xinfo, paddle.getX() - (ball.getDiameter() / 2));
-	  	 } // if
-	  } else if (key == XK_d) {
+	 if (!release) {
+	    ball.follow(xinfo, paddle.getX() - (ball.getDiameter() / 2));
+	 } // if
+      } else if (key == XK_d) {
          paddle.follow(xinfo, paddle.getX() + (paddle.getLength() / 3));
          if (!release) {
             ball.follow(xinfo, paddle.getX() - (ball.getDiameter() / 2));
          } // if
-	  } else if (key == XK_space) {
-	  	 if (!release) {
+      } else if (key == XK_space) {
+	 if (!release) {
             release = true;
-	  	 } // if
-	  } // if
+	 } // if
+      } // if
    } // if
 } // handleKeyPress
 
@@ -894,16 +894,16 @@ void handleKeyPress(Paddle &paddle, Ball &ball, XInfo &xinfo,
 void handleMotion(Paddle &paddle, Ball &ball, XInfo &xinfo,
                   XEvent &event, bool inside, bool release) {
    if (inside) {
-	  paddle.follow(xinfo, event.xmotion.x);
-	  if (!release) {
-	  	ball.follow(xinfo, paddle.getX()-(ball.getDiameter() / 2));
-	  } // if
+      paddle.follow(xinfo, event.xmotion.x);
+      if (!release) {
+	 ball.follow(xinfo, paddle.getX()-(ball.getDiameter() / 2));
+      } // if
    } // if
 } // handleMotion
 
 // Handles window resize events.
 void handleResize(vector<Displayable *> &dVector, XInfo &xinfo, XEvent &event,
-	              bool release) {
+	          bool release) {
    XConfigureEvent xce = event.xconfigure;
    
    if (xce.width != xinfo.width || xce.height != xinfo.height) {
@@ -912,11 +912,11 @@ void handleResize(vector<Displayable *> &dVector, XInfo &xinfo, XEvent &event,
       double resizedGapDist = xinfo.gapDist * widthResizeFactor;
       
       XFreePixmap(xinfo.display, xinfo.pixmap);
-	  int depth = DefaultDepth(xinfo.display, DefaultScreen(xinfo.display));
-	  xinfo.pixmap = XCreatePixmap(xinfo.display, xinfo.window,
-	  	 xce.width, xce.height, depth);
-	  xinfo.width = xce.width;
-	  xinfo.height = xce.height;
+      int depth = DefaultDepth(xinfo.display, DefaultScreen(xinfo.display));
+      xinfo.pixmap = XCreatePixmap(xinfo.display, xinfo.window,
+	 xce.width, xce.height, depth);
+      xinfo.width = xce.width;
+      xinfo.height = xce.height;
       xinfo.sideMargin = (xinfo.width / 10);
       xinfo.topMargin = xinfo.sideMargin;
       xinfo.bottomMargin = ((xinfo.height / 5) * 3);
@@ -924,6 +924,7 @@ void handleResize(vector<Displayable *> &dVector, XInfo &xinfo, XEvent &event,
       if (resizedGapDist < 2) {
       	 resizedGapDist = 2;
       } // if
+      
       xinfo.gapDist = resizedGapDist;
 
       vector<Displayable *>::const_iterator begin = dVector.begin();
@@ -939,10 +940,10 @@ void handleResize(vector<Displayable *> &dVector, XInfo &xinfo, XEvent &event,
 
 // Handles animation.
 void handleAnimation(vector<Brick *> &bVector, Paddle &paddle, Ball &ball,
-	                 Score &score, XInfo &xinfo, bool &release, bool &quit) {
+	             Score &score, XInfo &xinfo, bool &release, bool &quit) {
    if (release) {
-	  ball.move();
-	  ball.checkCollision(bVector, paddle, score, xinfo, quit);
+      ball.move();
+      ball.checkCollision(bVector, paddle, score, xinfo, quit);
    } // if
 } // handleAnimation
 
@@ -953,7 +954,7 @@ void repaint(vector<Displayable *> &dVector, XInfo &xinfo) {
 
    // Draws into the buffer.
    XFillRectangle(xinfo.display, xinfo.pixmap, xinfo.gcList[0], 
-        0, 0, xinfo.width, xinfo.height);
+      0, 0, xinfo.width, xinfo.height);
 
    while (begin != end) {
       Displayable *d = *begin;
@@ -994,7 +995,7 @@ void eventLoop(XInfo &xinfo) {
    // Add stuff to paint to the game screen display vector
    Paddle *paddle = new Paddle(xinfo.width/2, xinfo.height - 20, xinfo.width/10, 10);
    Ball *ball = new Ball((xinfo.width/2) - (paddle->getThickness()/2),
-   	  (xinfo.height - 35), paddle->getThickness());
+      (xinfo.height - 35), paddle->getThickness());
    Score *score = new Score(15, 25, (xinfo.rowSize * xinfo.colSize), xinfo.display);
    gameScreenDVector.push_back(paddle);
    gameScreenDVector.push_back(ball);
@@ -1008,16 +1009,16 @@ void eventLoop(XInfo &xinfo) {
    bool quit = false;
 
    while(!quit) {
-   	  unsigned long startTime = now();
+      unsigned long startTime = now();
 
-	  if (XPending(xinfo.display) > 0) {
-		 XNextEvent(xinfo.display, &event);
-		 switch(event.type) {
-		 	case KeyPress:
-			   handleKeyPress(*paddle, *ball, xinfo, event, release, quit);
-			   break;
-			case ButtonPress:
-			   if (splashScreen) {
+      if (XPending(xinfo.display) > 0) {
+	 XNextEvent(xinfo.display, &event);
+	 switch(event.type) {
+            case KeyPress:
+	       handleKeyPress(*paddle, *ball, xinfo, event, release, quit);
+	       break;
+	        case ButtonPress:
+	           if (splashScreen) {
 			   	  splashScreen = false;
 			   } else {
 			   	  release = true;
@@ -1060,9 +1061,9 @@ void eventLoop(XInfo &xinfo) {
          repaint(gameScreenDVector, xinfo);
       } // if
 	  
-	  if (XPending(xinfo.display) == 0) {
-	  	usleep(startTime + (1000000/FPS) - now());
-	  } // if
+      if (XPending(xinfo.display) == 0) {
+	 usleep(startTime + (1000000/FPS) - now());
+      } // if
    } // while
 
    cleanUp(splashScreenDVector);
@@ -1074,13 +1075,13 @@ void eventLoop(XInfo &xinfo) {
 // Next loop responding to events.
 // Exit forcing window manager to clean up - cheesy, but easy.
 int main (int argc, char *argv[]) {
-	XInfo xinfo;
-	initX(argc, argv, xinfo);
-	eventLoop(xinfo);
-	XFreeGC(xinfo.display, xinfo.gcList[0]);
-	XFreeGC(xinfo.display, xinfo.gcList[1]);
-	XFreePixmap(xinfo.display, xinfo.pixmap);
-	XUnmapWindow(xinfo.display, xinfo.window);
-	XDestroyWindow(xinfo.display, xinfo.window);
-	XCloseDisplay(xinfo.display);
+   XInfo xinfo;
+   initX(argc, argv, xinfo);
+   eventLoop(xinfo);
+   XFreeGC(xinfo.display, xinfo.gcList[0]);
+   XFreeGC(xinfo.display, xinfo.gcList[1]);
+   XFreePixmap(xinfo.display, xinfo.pixmap);
+   XUnmapWindow(xinfo.display, xinfo.window);
+   XDestroyWindow(xinfo.display, xinfo.window);
+   XCloseDisplay(xinfo.display);
 } // main
