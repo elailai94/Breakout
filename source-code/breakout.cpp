@@ -112,36 +112,6 @@ public:
    } // paint
 };
 
-// Subtitle displayable.
-class Subtitle: public Displayable {
-   int         x;
-   int         y;
-   XFontStruct *font;
-   string      title;
-   Display     *display;
-
-public:
-   Subtitle(int x, int y, Display *display, string title)
-      : x(x), y(y), display(display), title(title) {
-      font = XLoadQueryFont(display, "10x20");
-   } // constructor
-
-   virtual ~Subtitle() {
-      XFreeFont(display, font);
-   } // Destructor
-
-   virtual void resize(double widthResizeFactor, double heightResizeFactor, XInfo &xinfo, bool release) {
-   } // resize
-
-   virtual void paint(XInfo &xinfo) {
-      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
-      XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
-
-      XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-       	 x, y, title.c_str(), title.length());
-   } // paint
-};
-
 // Text displayable.
 class Text: public Displayable {
    int         x; 
@@ -766,9 +736,7 @@ void setUpSplashScreenDVector(vector<Displayable *> &dVector, XInfo &xinfo) {
    const int rightColumnTextMargin = (leftColumnTextMargin + (xinfo.width / 4));
 
    dVector.push_back(new Background());
-   dVector.push_back(new Title(leftColumnTextMargin, 180, xinfo.display, "Breakout!"));
-   dVector.push_back(new Subtitle(leftColumnTextMargin, 200, xinfo.display, "Ah Hoe Lai"));
-   dVector.push_back(new Subtitle(leftColumnTextMargin, 220, xinfo.display, "ahlai"));
+   dVector.push_back(new Title(leftColumnTextMargin, 190, xinfo.display, "Breakout!"));
    dVector.push_back(new Text(rightColumnTextMargin, 25, xinfo.display,
       "Objective:"));
    dVector.push_back(new Text(rightColumnTextMargin, 45, xinfo.display,
