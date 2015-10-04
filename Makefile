@@ -19,4 +19,4 @@ run: all
 	./$(NAME) 
 
 clean:
-	-rm breakout
+	-rm $(NAME)
