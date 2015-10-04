@@ -37,15 +37,15 @@ string toString(const T& t);
 
 // Information to draw on the window.
 struct XInfo {
-   Display	     *display;
-   int		       screen;
-   Window	       window;
-   GC		         gcList[2];
+   Display	 *display;
+   int		 screen;
+   Window	 window;
+   GC		 gcList[2];
    unsigned long colourList[10];
    
-   Pixmap	       pixmap;		    // Double buffer
-   int		       width;		      // Width of pixmap
-   int		       height;        // Height of pixmap
+   Pixmap	 pixmap;        // Double buffer
+   int		 width;		// Width of pixmap
+   int		 height;        // Height of pixmap
 
    // Bricks region margin dimensions
    int           sideMargin;
@@ -77,8 +77,8 @@ public:
 
    virtual void paint(XInfo &xinfo) {
       XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[NavyBlue]);
-   	  XFillRectangle(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-   	  	    0, 0, (xinfo.width / 4), xinfo.height);
+      XFillRectangle(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
+   	 0, 0, (xinfo.width / 4), xinfo.height);
    } // paint
 };
 
