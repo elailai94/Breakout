@@ -17,6 +17,17 @@ make clean
 ./breakout
 ```
 
+### Usage
+#### Command-Line Options
+- **-frame-rate n** is measured in frames per second and controls how often the screen is painted or redrawn. The default frame rate is 30 frames per second.
+- **-speed n** is measured in pixels per second and controls how fast the ball moves. The default speed is 4 pixels per second.
+
+#### Game Controls
+The game can be played using a mouse or a keyboard. At any point in the game, you can switch between the two.
+##### Mouse Controls
+- **move left** to move the paddle left
+- **move right** to move the paddle right
+
 ### Known Issues
 - X11 library has memory leaks.
 
