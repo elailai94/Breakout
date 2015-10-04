@@ -27,6 +27,12 @@ The game can be played using a mouse or a keyboard. At any point in the game, yo
 ##### Mouse Controls
 - **move left** to move the paddle left
 - **move right** to move the paddle right
+- **click** to release the ball from the paddle
+##### Keyboard Controls
+- **A** to move the paddle left
+- **D** to move the paddle right
+- **Space Bar** to release the ball from the paddle
+- **Escape** to quit the game
 
 ### Known Issues
 - X11 library has memory leaks.
