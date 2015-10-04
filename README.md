@@ -17,6 +17,8 @@ make clean
 ./breakout
 ```
 
+> Note: The compilation and execution step can be combined into a single step by running: **make run**.
+
 ### Usage
 #### Command-Line Options
 - **-frame-rate n** is measured in frames per second and controls how often the screen is painted or redrawn. The default frame rate is 30 frames per second.
