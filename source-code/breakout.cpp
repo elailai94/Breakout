@@ -104,8 +104,8 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
-   	  XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
+      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
+      XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
 
       XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
        	 x, y, title.c_str(), title.length());
@@ -134,8 +134,8 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
-   	  XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
+      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
+      XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
 
       XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
        	 x, y, title.c_str(), title.length());
@@ -164,7 +164,7 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
+      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
       XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
 
       XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
@@ -211,21 +211,16 @@ public:
       numBricks -= 1;
    } // decrementNumBricks
 
-   // Resets the score to zero.
-   void reset() {
-   	  score = 0;
-   } // reset
-
    virtual void resize(double widthResizeFactor, double heightResizeFactor, XInfo &xinfo, bool release) {
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
+      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
       XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
 
       string scoreStr = "Score: " + toString(score);
-   	  XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-   	     x, y, scoreStr.c_str(), scoreStr.length());
+      XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
+   	 x, y, scoreStr.c_str(), scoreStr.length());
    } // paint
 };
 
@@ -261,11 +256,11 @@ public:
    } // getThickness
 
    void follow(XInfo &xinfo, int newx) {
-   	  if (newx < (length / 2)) {
-   	  	 x = (length / 2);
-   	  } else if (newx > (xinfo.width - (length / 2))) {
-   	  	 x = (xinfo.width - (length / 2));
-   	  } else {
+      if (newx < (length / 2)) {
+   	 x = (length / 2);
+      } else if (newx > (xinfo.width - (length / 2))) {
+   	 x = (xinfo.width - (length / 2));
+      } else {
          x = newx;
       } // if
    } // follow
@@ -280,9 +275,9 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], WhitePixel(xinfo.display, xinfo.screen));
-   	  XSetLineAttributes(xinfo.display, xinfo.gcList[1],
-   	     thickness, LineSolid, CapRound, JoinRound);
+      XSetForeground(xinfo.display, xinfo.gcList[1], WhitePixel(xinfo.display, xinfo.screen));
+      XSetLineAttributes(xinfo.display, xinfo.gcList[1],
+   	 thickness, LineSolid, CapRound, JoinRound);
       XDrawLine(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
      	 x, y, x - (length/2), y);
       XDrawLine(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
@@ -303,18 +298,18 @@ class Brick: public Displayable {
 
 public:
    Brick(int row, int col, int x, int y,
-   	     int width, int height, int colour, bool hit)
+   	 int width, int height, int colour, bool hit)
       : row(row), col(col), x(x), y(y), width(width),
         height(height), colour(colour), hit(hit) {} // Constructor
 
    // Returns the row number of the brick.
    int getRow() const {
-   	  return row;
+      return row;
    } // getRow
 
    // Returns the column number of the brick.
    int getCol() const {
-   	  return col;
+      return col;
    } // getCol
 
    // Returns the x-coordinate of the brick.
@@ -324,17 +319,17 @@ public:
 
    // Returns the y-coordinate of the brick.
    int getY() const {
-   	  return y;
+      return y;
    } // getY
 
    // Returns the width of the brick.
    int getWidth() const {
-   	  return width;
+      return width;
    } // getWidth
 
    // Returns the height of the brick.
    int getHeight() const {
-   	  return height;
+      return height;
    } // getHeight
 
    // Returns the status of the brick.
@@ -360,11 +355,11 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  if (!hit) {
-   	  	 XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[colour]);
-   	     XFillRectangle(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-   	  	    x, y, width, height);
-   	  } // if
+      if (!hit) {
+   	 XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[colour]);
+   	 XFillRectangle(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
+   	    x, y, width, height);
+      } // if
    } // paint
 };
 
@@ -387,26 +382,26 @@ class Ball: public Displayable {
 
    // Checks if the ball hits the top wall.
    bool hitTopWall(XInfo &xinfo) {
-   	  if (y <= 0) {
-   	  	 return true;
-   	  } else {
-   	  	 return false;
-   	  } // if
+      if (y <= 0) {
+   	 return true;
+      } else {
+   	 return false;
+      } // if
    } // isHitTopWall
 
    // Checks if the ball hits the bottom wall.
    bool hitBottomWall(XInfo &xinfo) {
-   	  if (y >= (xinfo.height - getDiameter())) {
+      if (y >= (xinfo.height - getDiameter())) {
          return true;
-   	  } else {
-   	  	 return false;
-   	  } // if
+      } else {
+   	 return false;
+      } // if
    } // isHitBottomWall
 
    // Checks if the ball hits a brick.
    bool hitBrick(vector<Brick *> &bVector, Score &score,
-   	             XInfo &xinfo, int &ballBrickCollisionType) {
-   	  vector<Brick *>::const_iterator begin = bVector.begin();
+   	         XInfo &xinfo, int &ballBrickCollisionType) {
+      vector<Brick *>::const_iterator begin = bVector.begin();
       vector<Brick *>::const_iterator end = bVector.end();
 
       while (begin != end) {
@@ -446,10 +441,10 @@ class Ball: public Displayable {
                brick->destroyed();
                score.incrementScore();
                score.decrementNumBricks();
-         	   ballBrickCollisionType = 2;
-         	   return true;
+               ballBrickCollisionType = 2;
+               return true;
             } else if (((x + diameter) >= brick->getX()) &&
-         	   (x <= brickRightEndX) &&
+               (x <= brickRightEndX) &&
                (ballCentreY > brick->getY()) &&
                (ballCentreY <= brickBottomEndY)) { // Right of ball hits left of brick?
                brick->destroyed();
@@ -458,14 +453,14 @@ class Ball: public Displayable {
                ballBrickCollisionType = 3;
                return true;
             } else if ((x <= brickRightEndX) &&
-         	   (x >= brick->getX()) &&
+               (x >= brick->getX()) &&
                (ballCentreY > brick->getY()) && 
                (ballCentreY <= brickBottomEndY)) { // Left of ball hits right of brick?
                brick->destroyed();
                score.incrementScore();
                score.decrementNumBricks();
-         	   ballBrickCollisionType = 4;
-         	   return true;
+               ballBrickCollisionType = 4;
+               return true;
             } // if
 
          } // if
@@ -477,11 +472,11 @@ class Ball: public Displayable {
 
    // Checks if the ball hits the paddle.
    bool hitPaddle(Paddle &paddle, int &ballPaddleCollisionType) {
-   	  // X-coordinates of left end of paddle
-   	  const int paddleLeftX = (paddle.getX() - (paddle.getLength() / 2));
-   	  // X-coordinates of right end of paddle
-   	  const int paddleRightX = (paddle.getX() + (paddle.getLength() / 2));
-   	  // X-coordinates of the centre of ball
+      // X-coordinates of left end of paddle
+      const int paddleLeftX = (paddle.getX() - (paddle.getLength() / 2));
+      // X-coordinates of right end of paddle
+      const int paddleRightX = (paddle.getX() + (paddle.getLength() / 2));
+      // X-coordinates of the centre of ball
       const int ballCentreX = (x + (diameter / 2));
       // Y-coordinates of the centre of ball
       const int ballCentreY = (y + (diameter / 2));
@@ -524,30 +519,30 @@ public:
 
    // Returns the x field.
    int getX() const {
-   	  return x;
+      return x;
    } // getX
 
    // Returns the y field.
    int getY() const {
-   	  return y;
+      return y;
    } // getY
 
    // Returns the radius of the ball.
    int getDiameter() const {
-   	  return diameter;
+      return diameter;
    } // getDiameter
 
    // Moves the ball in the right direction.
    void move() {
-   	  x += xVelocity;
-   	  y -= yVelocity;
+      x += xVelocity;
+      y -= yVelocity;
    } // move
 
    // Checks whether the ball has collide with bricks and paddle.
    void checkCollision(vector<Brick *> &bVector, Paddle &paddle,
-   	                   Score &score, XInfo &xinfo, bool &quit) {	  
-   	  int ballBrickCollisionType = 0;
-   	  int ballPaddleCollisionType = 0;
+   	               Score &score, XInfo &xinfo, bool &quit) {	  
+      int ballBrickCollisionType = 0;
+      int ballPaddleCollisionType = 0;
 
       if (score.getNumBricks() == 0) {
         quit = true;
@@ -597,9 +592,9 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	 XSetForeground(xinfo.display, xinfo.gcList[1], WhitePixel(xinfo.display, xinfo.screen));
-     XFillArc(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-        x, y, diameter, diameter, 0, 360*64);
+      XSetForeground(xinfo.display, xinfo.gcList[1], WhitePixel(xinfo.display, xinfo.screen));
+      XFillArc(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
+         x, y, diameter, diameter, 0, 360*64);
    } // paint
 };
 
@@ -644,7 +639,7 @@ void initGCList(XInfo &xinfo) {
    XSetForeground(xinfo.display, xinfo.gcList[i], BlackPixel(xinfo.display, xinfo.screen));
    XSetFillStyle(xinfo.display, xinfo.gcList[i], FillSolid);
    XSetLineAttributes(xinfo.display, xinfo.gcList[i],
-	                  1, LineSolid, CapButt, JoinRound);
+      1, LineSolid, CapButt, JoinRound);
 
    // Graphics context for text, paddle, ball and bricks
    i = 1;
@@ -698,23 +693,23 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
    hints.flags = PPosition | PSize | PMinSize;
 
    xinfo.window = XCreateSimpleWindow( 
-	  xinfo.display,				    // Display where window appears
+	  xinfo.display,	            // Display where window appears
 	  DefaultRootWindow(xinfo.display), // Window's parent in window tree
-	  hints.x, hints.y,			        // Upper left corner location
+	  hints.x, hints.y,	            // Upper left corner location
 	  hints.width, hints.height,	    // Size of the window
-	  5,						        // Width of window's border
-	  black,						    // Window border colour
-	  white);					        // Window background colour
+	  5,			            // Width of window's border
+	  black,	                    // Window border colour
+	  white);			    // Window background colour
 
    // Initializes the graphics context list.		
    XSetStandardProperties(
-	  xinfo.display,		            // Display containing the window
-	  xinfo.window,		                // Window whose properties are set
-	  "Breakout!",		                // Window's title
-	  "Breakout!",			            // Icon's title
-	  None,				                // Pixmap for the icon
-	  argv, argc,			            // Applications command line args
-	  &hints);			                // Size hints for the window
+	  xinfo.display,		    // Display containing the window
+	  xinfo.window,		            // Window whose properties are set
+	  "Breakout!",		            // Window's title
+	  "Breakout!",			    // Icon's title
+	  None,				    // Pixmap for the icon
+	  argv, argc,			    // Applications command line args
+	  &hints);			    // Size hints for the window
 
    initGCList(xinfo);
 
@@ -775,44 +770,44 @@ void setUpSplashScreenDVector(vector<Displayable *> &dVector, XInfo &xinfo) {
    dVector.push_back(new Subtitle(leftColumnTextMargin, 200, xinfo.display, "Ah Hoe Lai"));
    dVector.push_back(new Subtitle(leftColumnTextMargin, 220, xinfo.display, "ahlai"));
    dVector.push_back(new Text(rightColumnTextMargin, 25, xinfo.display,
-   	  "Objective:"));
+      "Objective:"));
    dVector.push_back(new Text(rightColumnTextMargin, 45, xinfo.display,
-   	  "Destroy all the bricks on the screen without letting"));
+      "Destroy all the bricks on the screen without letting"));
    dVector.push_back(new Text(rightColumnTextMargin, 65, xinfo.display,
-   	  "the ball touch the bottom of the screen"));
+      "the ball touch the bottom of the screen"));
    dVector.push_back(new Text(rightColumnTextMargin, 95, xinfo.display,
-   	  "How To Play:"));
+      "How To Play:"));
    dVector.push_back(new Text(rightColumnTextMargin, 115, xinfo.display,
-   	  "Move the paddle left or right using a mouse or keys"));
+      "Move the paddle left or right using a mouse or keys"));
    dVector.push_back(new Text(rightColumnTextMargin, 135, xinfo.display,
-   	  "on a keyboard to bounce the ball upward"));
+      "on a keyboard to bounce the ball upward"));
    dVector.push_back(new Text(rightColumnTextMargin, 165, xinfo.display,
-   	  "Game Controls:"));
+      "Game Controls:"));
    dVector.push_back(new Text(rightColumnTextMargin, 185, xinfo.display,
-   	  "- Mouse Controls:"));
+      "- Mouse Controls:"));
    dVector.push_back(new Text(rightColumnTextMargin, 205, xinfo.display,
-   	  "Move left - move paddle left"));
+      "Move left - move paddle left"));
    dVector.push_back(new Text(rightColumnTextMargin, 225, xinfo.display,
-   	  "Move right - move paddle right"));
+      "Move right - move paddle right"));
    dVector.push_back(new Text(rightColumnTextMargin, 245, xinfo.display,
-   	  "Click - release ball from paddle"));
+      "Click - release ball from paddle"));
    dVector.push_back(new Text(rightColumnTextMargin, 270, xinfo.display,
-   	  "- Keyboard Controls:"));
+      "- Keyboard Controls:"));
    dVector.push_back(new Text(rightColumnTextMargin, 290, xinfo.display,
-   	  "A - move paddle left"));
+      "A - move paddle left"));
    dVector.push_back(new Text(rightColumnTextMargin, 310, xinfo.display,
-   	  "D - move paddle right"));
+      "D - move paddle right"));
    dVector.push_back(new Text(rightColumnTextMargin, 330, xinfo.display,
-   	  "Space Bar - release ball from paddle"));
+      "Space Bar - release ball from paddle"));
    dVector.push_back(new Text(rightColumnTextMargin, 350, xinfo.display,
-   	  "Escape - quit game"));
+      "Escape - quit game"));
    dVector.push_back(new Text(rightColumnTextMargin, (xinfo.height - 15), xinfo.display,
-   	  "Click anywhere on the screen to start the game"));
+      "Click anywhere on the screen to start the game"));
 } // setUpSplashScreenDVector
 
 // Sets up the bricks region to be displayed on screen.
 void setUpBricksRegion(vector<Displayable *> &dVector,
-	                   vector<Brick *> &bVector, XInfo &xinfo) {
+	               vector<Brick *> &bVector, XInfo &xinfo) {
    // Region dimensions in terms of pixels
    const int rWidth = (xinfo.width - (2 * xinfo.sideMargin));
    const int rHeight = (xinfo.height - (xinfo.topMargin + xinfo.bottomMargin));
@@ -823,62 +818,62 @@ void setUpBricksRegion(vector<Displayable *> &dVector,
 
    // Adds all the bricks to display vector and brick vector
    for (int i = 0; i < xinfo.colSize; ++i) {
-   	  for (int j = 0; j < xinfo.rowSize; ++j) {
-   	  	 const int x = ((j * (bWidth + xinfo.gapDist)) + xinfo.sideMargin);
-   	  	 const int y = ((i * (bHeight + xinfo.gapDist)) + xinfo.topMargin);
-   	  	 const int brickIndex = ((i * xinfo.rowSize) + j);
-   	  	 int brickColour;
+      for (int j = 0; j < xinfo.rowSize; ++j) {
+   	 const int x = ((j * (bWidth + xinfo.gapDist)) + xinfo.sideMargin);
+   	 const int y = ((i * (bHeight + xinfo.gapDist)) + xinfo.topMargin);
+   	 const int brickIndex = ((i * xinfo.rowSize) + j);
+   	 int brickColour;
 
-   	  	 if (brickIndex <= ((0 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Red;
-   	  	 } else if (brickIndex <= ((1 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Orange;
-   	  	 } else if (brickIndex <= ((2 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Yellow;
-   	  	 } else if (brickIndex <= ((3 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Green;
-   	  	 } else if (brickIndex <= ((4 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = DarkGreen;
-   	  	 } else if (brickIndex <= ((5 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Blue;
-   	  	 } else if (brickIndex <= ((6 * xinfo.rowSize) + 14)) {
+   	 if (brickIndex <= ((0 * xinfo.rowSize) + 14)) {
+   	    brickColour = Red;
+   	 } else if (brickIndex <= ((1 * xinfo.rowSize) + 14)) {
+   	    brickColour = Orange;
+   	 } else if (brickIndex <= ((2 * xinfo.rowSize) + 14)) {
+   	    brickColour = Yellow;
+   	 } else if (brickIndex <= ((3 * xinfo.rowSize) + 14)) {
+   	    brickColour = Green;
+   	 } else if (brickIndex <= ((4 * xinfo.rowSize) + 14)) {
+   	    brickColour = DarkGreen;
+   	 } else if (brickIndex <= ((5 * xinfo.rowSize) + 14)) {
+   	    brickColour = Blue;
+   	 } else if (brickIndex <= ((6 * xinfo.rowSize) + 14)) {
             brickColour = NavyBlue;
-   	  	 } else {
-   	  	 	brickColour = DarkViolet;
-   	  	 } // if
+   	 } else {
+   	    brickColour = DarkViolet;
+   	 } // if
 
          Brick *newBrick = new Brick(i, j, x, y, bWidth, bHeight, brickColour, false);
          dVector.push_back(newBrick);
          bVector.push_back(newBrick);
-   	  } // for
+      } // for
    } // for
 } // setUpBricksRegion
 
 // Gets current microseconds.
 unsigned long now() {
-	timeval tv;
-	gettimeofday(&tv, 0);
-	return tv.tv_sec * 1000000 + tv.tv_usec;
+   timeval tv;
+   gettimeofday(&tv, 0);
+   return tv.tv_sec * 1000000 + tv.tv_usec;
 } // now
 
 // Handles key press events.
 void handleKeyPress(Paddle &paddle, Ball &ball, XInfo &xinfo,
-	                XEvent &event, bool &release, bool &quit) {
+	            XEvent &event, bool &release, bool &quit) {
    KeySym key;
    char text[BufferSize];
 
    int i = XLookupString( 
 	 (XKeyEvent *)&event, 	// The keyboard event
-	 text, 					// Buffer when text will be written
-	 BufferSize, 			// Size of the text buffer
-	 &key, 					// Workstation-independent key symbol
-	 0);					// Pointer to a composeStatus structure (unused)
+	 text, 		        // Buffer when text will be written
+	 BufferSize, 		// Size of the text buffer
+	 &key, 			// Workstation-independent key symbol
+	 0);			// Pointer to a composeStatus structure (unused)
 
    if (i == 1) {
-	  if (key == XK_Escape) {
-		 quit = true;
-	  } else if (key == XK_a) {
-	  	 paddle.follow(xinfo, paddle.getX() - (paddle.getLength() / 3));
+      if (key == XK_Escape) {
+         quit = true;
+      } else if (key == XK_a) {
+	 paddle.follow(xinfo, paddle.getX() - (paddle.getLength() / 3));
 	  	 if (!release) {
 	  	 	ball.follow(xinfo, paddle.getX() - (ball.getDiameter() / 2));
 	  	 } // if
