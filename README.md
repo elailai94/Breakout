@@ -2,6 +2,12 @@
 ### About
 [Breakout](http://en.wikipedia.org/wiki/Breakout_(video_game)) is a simple 2D video game, originally published by Atari in 1976. Breakout is written entirely in C++08 and builts on most UNIX-like operating systems (i.e.: Linux or Mac). The graphical component of the game is implemented using the X11 library. In the game, a layer of bricks lines the top third of the screen. A ball travels across the screen, bouncing off the top and side walls of the screen. When a brick is hit, the ball bounces away and the brick is destroyed. The player loses a turn when the ball touches the bottom of the screen. To prevent this from happening, the player has a movable paddle to bounce the ball upward, keeping it in play.
 
+### Screenshots
+#### Splash Screen
+![Breakout!_Screenshot1](https://cloud.githubusercontent.com/assets/7763904/10266669/f92b56ec-6a3c-11e5-8610-29d3e0794d0e.png)
+#### Gameplay Screen
+![Breakout!_Screenshot2](https://cloud.githubusercontent.com/assets/7763904/10266675/29a37944-6a3d-11e5-997c-e8db7661272a.png)
+
 ### Compilation
 ```Bash
 make
