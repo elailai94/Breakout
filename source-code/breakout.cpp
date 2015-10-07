@@ -38,15 +38,15 @@ string toString(const T& t);
 
 // Information to draw on the window.
 struct XInfo {
-   Display	 *display;
-   int		 screen;
-   Window	 window;
-   GC		 gcList[2];
+   Display	     *display;
+   int		       screen;
+   Window	       window;
+   GC		         gcList[2];
    unsigned long colourList[10];
    
-   Pixmap	 pixmap;    // Double buffer
-   int		 width;     // Width of pixmap
-   int		 height;    // Height of pixmap
+   Pixmap	       pixmap;    // Double buffer
+   int		       width;     // Width of pixmap
+   int		       height;    // Height of pixmap
 
    // Bricks region margin dimensions
    int           sideMargin;
@@ -221,7 +221,7 @@ public:
 
       string scoreStr = "Score: " + toString(score);
       XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-   	 x, y, scoreStr.c_str(), scoreStr.length());
+   	     x, y, scoreStr.c_str(), scoreStr.length());
    } // paint
 };
 
@@ -268,7 +268,7 @@ public:
 
       string livesStr = "Lives: " + toString(lives);
       XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-          x, y, livesStr.c_str(), livesStr.length());
+         x, y, livesStr.c_str(), livesStr.length());
    } // paint
 };
 
@@ -339,11 +339,11 @@ public:
    virtual void paint(XInfo &xinfo) {
       XSetForeground(xinfo.display, xinfo.gcList[1], WhitePixel(xinfo.display, xinfo.screen));
       XSetLineAttributes(xinfo.display, xinfo.gcList[1],
-   	 thickness, LineSolid, CapRound, JoinRound);
+   	     thickness, LineSolid, CapRound, JoinRound);
       XDrawLine(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-     	  x, y, x - (length/2), y);
+     	   x, y, x - (length/2), y);
       XDrawLine(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-     	  x, y, x + (length/2), y);
+     	   x, y, x + (length/2), y);
    } // paint
 };
 
@@ -834,23 +834,23 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
    hints.flags = PPosition | PSize | PMinSize;
 
    xinfo.window = XCreateSimpleWindow( 
-      xinfo.display,	                 // Display where window appears
+      xinfo.display,	                   // Display where window appears
       DefaultRootWindow(xinfo.display),  // Window's parent in window tree
-	  hints.x, hints.y,			         // Upper left corner location
-	  hints.width, hints.height,	      // Size of the window
-	  5,						               // Width of window's border
-	  black,						            // Window border colour
-	  white);					            // Window background colour
+	    hints.x, hints.y,			             // Upper left corner location
+	    hints.width, hints.height,	       // Size of the window
+	    5,						                     // Width of window's border
+	    black,						                 // Window border colour
+	    white);					                   // Window background colour
 
    // Initializes the graphics context list.		
    XSetStandardProperties(
-	  xinfo.display,		               // Display containing the window
-	  xinfo.window,		               // Window whose properties are set
-	  "Breakout!",		                  // Window's title
-	  "Breakout!",			               // Icon's title
-	  None,				                  // Pixmap for the icon
-	  argv, argc,			               // Applications command line args
-	  &hints);			                  // Size hints for the window
+	    xinfo.display,		                 // Display containing the window
+	    xinfo.window,		                   // Window whose properties are set
+	    "Breakout!",		                   // Window's title
+	    "Breakout!",			                 // Icon's title
+	    None,				                       // Pixmap for the icon
+	    argv, argc,			                   // Applications command line args
+	    &hints);			                     // Size hints for the window
 
    initGCList(xinfo);
 
@@ -888,9 +888,9 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
    // Tells the window manager what input events you want.
    XSelectInput(xinfo.display, xinfo.window, 
                 KeyPressMask| ButtonPressMask |
-	        PointerMotionMask | EnterWindowMask |
-	        LeaveWindowMask | StructureNotifyMask |
-	        ExposureMask);
+	              PointerMotionMask | EnterWindowMask |
+	              LeaveWindowMask | StructureNotifyMask |
+	              ExposureMask);
 
    // Reduces flickering by not painting the background.
    XSetWindowBackgroundPixmap(xinfo.display, xinfo.window, None);
@@ -997,7 +997,7 @@ void setUpBricksRegion(vector<Displayable *> &dVector,
         Brick *newBrick = new Brick(i, j, x, y, bWidth, bHeight, brickColour, brickType, false);
         dVector.push_back(newBrick);
         bVector.push_back(newBrick);
-   	} // for
+   	  } // for
    } // for
 } // setUpBricksRegion
 
