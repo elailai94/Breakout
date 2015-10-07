@@ -38,15 +38,15 @@ string toString(const T& t);
 
 // Information to draw on the window.
 struct XInfo {
-   Display	     *display;
-   int		       screen;
-   Window	       window;
-   GC		         gcList[2];
+   Display	 *display;
+   int		 screen;
+   Window	 window;
+   GC		 gcList[2];
    unsigned long colourList[10];
    
-   Pixmap	       pixmap;		// Double buffer
-   int		       width;		  // Width of pixmap
-   int		       height;    // Height of pixmap
+   Pixmap	 pixmap;    // Double buffer
+   int		 width;     // Width of pixmap
+   int		 height;    // Height of pixmap
 
    // Bricks region margin dimensions
    int           sideMargin;
@@ -78,8 +78,8 @@ public:
 
    virtual void paint(XInfo &xinfo) {
       XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[NavyBlue]);
-   	  XFillRectangle(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-   	  	 0, 0, (xinfo.width / 4), xinfo.height);
+      XFillRectangle(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
+   	 0, 0, (xinfo.width / 4), xinfo.height);
    } // paint
 };
 
@@ -105,8 +105,8 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
-   	  XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
+      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
+      XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
 
       XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
        	 x, y, title.c_str(), title.length());
@@ -135,8 +135,8 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
-   	  XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
+      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
+      XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
 
       XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
        	 x, y, title.c_str(), title.length());
@@ -165,11 +165,11 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
-    XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
+      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
+      XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
 
-    XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-       x, y, text.c_str(), text.length());
+      XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
+         x, y, text.c_str(), text.length());
    } // paint      
 };
 
@@ -216,12 +216,12 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
+      XSetForeground(xinfo.display, xinfo.gcList[1], xinfo.colourList[White]);
       XSetFont(xinfo.display, xinfo.gcList[1], font->fid);
 
       string scoreStr = "Score: " + toString(score);
-   	  XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-   	     x, y, scoreStr.c_str(), scoreStr.length());
+      XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
+   	 x, y, scoreStr.c_str(), scoreStr.length());
    } // paint
 };
 
@@ -285,12 +285,12 @@ public:
 
    // Returns the x field.
    int getX() const {
-   	  return x;
+      return x;
    } // getX
 
    // Returns the y field.
    int getY() const {
-   	  return y;
+      return y;
    } // getY
 
    // Returns the length field.
@@ -305,11 +305,11 @@ public:
 
    // Updates the x field to follow mouse motions.
    void follow(XInfo &xinfo, int newx) {
-   	  if (newx < (length / 2)) {
-   	  	 x = (length / 2);
-   	  } else if (newx > (xinfo.width - (length / 2))) {
-   	  	 x = (xinfo.width - (length / 2));
-   	  } else {
+      if (newx < (length / 2)) {
+   	 x = (length / 2);
+      } else if (newx > (xinfo.width - (length / 2))) {
+   	 x = (xinfo.width - (length / 2));
+      } else {
          x = newx;
       } // if
    } // follow
@@ -337,13 +337,13 @@ public:
    } // resize
 
    virtual void paint(XInfo &xinfo) {
-   	  XSetForeground(xinfo.display, xinfo.gcList[1], WhitePixel(xinfo.display, xinfo.screen));
-   	  XSetLineAttributes(xinfo.display, xinfo.gcList[1],
-   	     thickness, LineSolid, CapRound, JoinRound);
+      XSetForeground(xinfo.display, xinfo.gcList[1], WhitePixel(xinfo.display, xinfo.screen));
+      XSetLineAttributes(xinfo.display, xinfo.gcList[1],
+   	 thickness, LineSolid, CapRound, JoinRound);
       XDrawLine(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-     	   x, y, x - (length/2), y);
+     	  x, y, x - (length/2), y);
       XDrawLine(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-     	   x, y, x + (length/2), y);
+     	  x, y, x + (length/2), y);
    } // paint
 };
 
@@ -367,12 +367,12 @@ public:
 
    // Returns the row number of the brick.
    int getRow() const {
-   	  return row;
+      return row;
    } // getRow
 
    // Returns the column number of the brick.
    int getCol() const {
-   	  return col;
+      return col;
    } // getCol
 
    // Returns the x-coordinate of the brick.
@@ -382,17 +382,17 @@ public:
 
    // Returns the y-coordinate of the brick.
    int getY() const {
-   	  return y;
+      return y;
    } // getY
 
    // Returns the width of the brick.
    int getWidth() const {
-   	  return width;
+      return width;
    } // getWidth
 
    // Returns the height of the brick.
    int getHeight() const {
-   	  return height;
+      return height;
    } // getHeight
 
    // Returns the number of lives left of the brick.
@@ -464,26 +464,26 @@ class Ball: public Displayable {
 
    // Checks if the ball hits the top wall.
    bool hitTopWall(XInfo &xinfo) {
-   	  if (y <= 0) {
-   	  	 return true;
-   	  } else {
-   	  	 return false;
-   	  } // if
+      if (y <= 0) {
+   	 return true;
+      } else {
+   	 return false;
+      } // if
    } // isHitTopWall
 
    // Checks if the ball hits the bottom wall.
    bool hitBottomWall(XInfo &xinfo) {
-   	  if (y >= (xinfo.height - getDiameter())) {
+      if (y >= (xinfo.height - getDiameter())) {
          return true;
-   	  } else {
-   	  	 return false;
-   	  } // if
+      } else {
+   	 return false;
+      } // if
    } // isHitBottomWall
 
    // Checks if the ball hits a brick.
    bool hitBrick(vector<Brick *> &bVector, Paddle &paddle, Score &score,
-   	           XInfo &xinfo, int &ballBrickCollisionType) {
-   	  vector<Brick *>::const_iterator begin = bVector.begin();
+   	         XInfo &xinfo, int &ballBrickCollisionType) {
+      vector<Brick *>::const_iterator begin = bVector.begin();
       vector<Brick *>::const_iterator end = bVector.end();
 
       while (begin != end) {
@@ -536,7 +536,7 @@ class Ball: public Displayable {
          	   ballBrickCollisionType = 2;
          	   return true;
             } else if (((x + diameter) >= brick->getX()) &&
-         	   (x <= brickRightEndX) &&
+               (x <= brickRightEndX) &&
                (ballCentreY > brick->getY()) &&
                (ballCentreY <= brickBottomEndY)) { // Right of ball hits left of brick?
                brick->destroyed();
@@ -550,7 +550,7 @@ class Ball: public Displayable {
                ballBrickCollisionType = 3;
                return true;
             } else if ((x <= brickRightEndX) &&
-         	   (x >= brick->getX()) &&
+               (x >= brick->getX()) &&
                (ballCentreY > brick->getY()) && 
                (ballCentreY <= brickBottomEndY)) { // Left of ball hits right of brick?
                brick->destroyed();
@@ -560,9 +560,9 @@ class Ball: public Displayable {
                   paddle.grow(xinfo);
                } else if (brick->getType() == 's') {
                   decreaseSpeed();
-               } //
-         	   ballBrickCollisionType = 4;
-         	   return true;
+               } // if
+               ballBrickCollisionType = 4;
+               return true;
             } // if
 
          } // if
@@ -574,11 +574,11 @@ class Ball: public Displayable {
 
    // Checks if the ball hits the paddle.
    bool hitPaddle(Paddle &paddle, int &ballPaddleCollisionType) {
-   	  // X-coordinates of left end of paddle
-   	  const int paddleLeftX = (paddle.getX() - (paddle.getLength() / 2));
-   	  // X-coordinates of right end of paddle
-   	  const int paddleRightX = (paddle.getX() + (paddle.getLength() / 2));
-   	  // X-coordinates of the centre of ball
+      // X-coordinates of left end of paddle
+      const int paddleLeftX = (paddle.getX() - (paddle.getLength() / 2));
+      // X-coordinates of right end of paddle
+      const int paddleRightX = (paddle.getX() + (paddle.getLength() / 2));
+      // X-coordinates of the centre of ball
       const int ballCentreX = (x + (diameter / 2));
       // Y-coordinates of the centre of ball
       const int ballCentreY = (y + (diameter / 2));
@@ -630,30 +630,30 @@ public:
 
    // Returns the x field.
    int getX() const {
-   	  return x;
+      return x;
    } // getX
 
    // Returns the y field.
    int getY() const {
-   	  return y;
+      return y;
    } // getY
 
    // Returns the radius of the ball.
    int getDiameter() const {
-   	  return diameter;
+      return diameter;
    } // getDiameter
 
    // Moves the ball in the right direction.
    void move() {
-   	x += xVelocity;
-   	y -= yVelocity;
+      x += xVelocity;
+      y -= yVelocity;
    } // move
 
    // Checks whether the ball has collide with bricks and paddle.
    void checkCollision(vector<Brick *> &bVector, Paddle &paddle, Score &score,
                        Lives &lives, XInfo &xinfo, bool &release, bool &quit) {	  
-   	  int ballBrickCollisionType = 0;
-   	  int ballPaddleCollisionType = 0;
+      int ballBrickCollisionType = 0;
+      int ballPaddleCollisionType = 0;
 
       if (score.getNumBricks() == 0) {
          quit = true;
@@ -677,7 +677,7 @@ public:
          
          if ((ballBrickCollisionType == 1) ||
             (ballBrickCollisionType == 2)) {
-         	  yVelocity = -yVelocity;
+            yVelocity = -yVelocity;
          } else {
             xVelocity = -xVelocity;
          } // if
@@ -686,7 +686,7 @@ public:
           
          if ((ballPaddleCollisionType == 1) ||
             (ballPaddleCollisionType == 2)) {
-         	  yVelocity = -yVelocity;
+            yVelocity = -yVelocity;
          } else {
             xVelocity = -xVelocity;
          } // if
@@ -780,7 +780,7 @@ void initGCList(XInfo &xinfo) {
    XSetForeground(xinfo.display, xinfo.gcList[i], BlackPixel(xinfo.display, xinfo.screen));
    XSetFillStyle(xinfo.display, xinfo.gcList[i], FillSolid);
    XSetLineAttributes(xinfo.display, xinfo.gcList[i],
-	                  1, LineSolid, CapButt, JoinRound);
+	              1, LineSolid, CapButt, JoinRound);
 
    // Graphics context for text, paddle, ball and bricks
    i = 1;
@@ -816,7 +816,7 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
    // It can go wrong if DISPLAY isn't set, or you don't have permission.	
    xinfo.display = XOpenDisplay("");
    if (!xinfo.display)	{
-	  error("Can't open display.");
+      error("Can't open display.");
    } // if
 	
    // Find out some things about the display you're using.
@@ -834,8 +834,8 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
    hints.flags = PPosition | PSize | PMinSize;
 
    xinfo.window = XCreateSimpleWindow( 
-	  xinfo.display,				         // Display where window appears
-	  DefaultRootWindow(xinfo.display), // Window's parent in window tree
+      xinfo.display,	                 // Display where window appears
+      DefaultRootWindow(xinfo.display),  // Window's parent in window tree
 	  hints.x, hints.y,			         // Upper left corner location
 	  hints.width, hints.height,	      // Size of the window
 	  5,						               // Width of window's border
@@ -887,10 +887,10 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
 
    // Tells the window manager what input events you want.
    XSelectInput(xinfo.display, xinfo.window, 
-	  KeyPressMask| ButtonPressMask |
-	  PointerMotionMask | EnterWindowMask |
-	  LeaveWindowMask | StructureNotifyMask |
-	  ExposureMask);
+                KeyPressMask| ButtonPressMask |
+	        PointerMotionMask | EnterWindowMask |
+	        LeaveWindowMask | StructureNotifyMask |
+	        ExposureMask);
 
    // Reduces flickering by not painting the background.
    XSetWindowBackgroundPixmap(xinfo.display, xinfo.window, None);
