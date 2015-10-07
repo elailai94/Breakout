@@ -907,7 +907,8 @@ void setUpSplashScreenDVector(vector<Displayable *> &dVector, XInfo &xinfo) {
    const int rightColumnTextMargin = (leftColumnTextMargin + (xinfo.width / 4));
 
    dVector.push_back(new Background());
-   dVector.push_back(new Title(leftColumnTextMargin, 190, xinfo.display, "Breakout!"));
+   dVector.push_back(new Title(leftColumnTextMargin, 190, xinfo.display,
+      "Breakout!"));
    dVector.push_back(new Text(rightColumnTextMargin, 25, xinfo.display,
    	  "Objective:"));
    dVector.push_back(new Text(rightColumnTextMargin, 45, xinfo.display,
