@@ -4,9 +4,9 @@
 
 ### Screenshots
 #### Splash Screen
-![Breakout!_Screenshot1](https://cloud.githubusercontent.com/assets/7763904/10266669/f92b56ec-6a3c-11e5-8610-29d3e0794d0e.png)
+![Breakout!_Screenshot1](https://cloud.githubusercontent.com/assets/7763904/10354086/9632a6b2-6d2a-11e5-935b-03f16173b894.png)
 #### Gameplay Screen
-![Breakout!_Screenshot2](https://cloud.githubusercontent.com/assets/7763904/10266675/29a37944-6a3d-11e5-997c-e8db7661272a.png)
+![Breakout!_Screenshot2](https://cloud.githubusercontent.com/assets/7763904/10354090/a0fc7cd0-6d2a-11e5-8720-5bd7225ab6fd.png)
 
 ### Compilation
 ```Bash
