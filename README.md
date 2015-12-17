@@ -45,7 +45,7 @@ The game can be played using a mouse or a keyboard. At any point in the game, yo
 - **Escape** to quit the game
 
 ### Bonus Features
-- There are two other special types of bricks in addition to the normal bricks (represented by a rectangle with a solid colour fill). The first type of special brick is "elongate" brick (represented by an outline of a rectangle with a smaller black rectangle in it), which makes the paddle twice as long when They are hit by the ball. The second type of special brick is "shorten" brick (represented by a rectangle with a strip of white in the centre of it), which make the ball speed slower by 0.2 pixels per second. However, the "elongate" brick will not make the paddle longer than a third of the screen width. Similarly, the "shorten" brick will not slow the ball slower than 3 pixels per second. There is a 1/50 chance that a "elongate" brick or a "shorten" brick is on the screen.
+There are two other special types of bricks in addition to the normal bricks (represented by a rectangle with a solid colour fill). The first type of special brick is "elongate" brick (represented by an outline of a rectangle with a smaller black rectangle in it), which makes the paddle twice as long when They are hit by the ball. The second type of special brick is "shorten" brick (represented by a rectangle with a strip of white in the centre of it), which make the ball speed slower by 0.2 pixels per second. However, the "elongate" brick will not make the paddle longer than a third of the screen width. Similarly, the "shorten" brick will not slow the ball slower than 3 pixels per second. There is a 1/50 chance that a "elongate" brick or a "shorten" brick is on the screen.
 
 ### Known Issues
 - X11 library has memory leaks.
