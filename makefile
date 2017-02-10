@@ -19,4 +19,7 @@ run: all
 	./$(NAME) 
 
 clean:
-	rm $(NAME)
+	find . -name $(NAME) -delete
+	find . -name "*.d" -delete
+	find . -name "*.o" -delete
+

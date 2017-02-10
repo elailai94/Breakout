@@ -221,7 +221,7 @@ public:
 
       string scoreStr = "Score: " + toString(score);
       XDrawString(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-   	     x, y, scoreStr.c_str(), scoreStr.length());
+   	 x, y, scoreStr.c_str(), scoreStr.length());
    } // paint
 };
 
@@ -339,11 +339,11 @@ public:
    virtual void paint(XInfo &xinfo) {
       XSetForeground(xinfo.display, xinfo.gcList[1], WhitePixel(xinfo.display, xinfo.screen));
       XSetLineAttributes(xinfo.display, xinfo.gcList[1],
-   	     thickness, LineSolid, CapRound, JoinRound);
+   	 thickness, LineSolid, CapRound, JoinRound);
       XDrawLine(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-     	   x, y, x - (length/2), y);
+     	 x, y, x - (length/2), y);
       XDrawLine(xinfo.display, xinfo.pixmap, xinfo.gcList[1],
-     	   x, y, x + (length/2), y);
+     	 x, y, x + (length/2), y);
    } // paint
 };
 
@@ -780,7 +780,7 @@ void initGCList(XInfo &xinfo) {
    XSetForeground(xinfo.display, xinfo.gcList[i], BlackPixel(xinfo.display, xinfo.screen));
    XSetFillStyle(xinfo.display, xinfo.gcList[i], FillSolid);
    XSetLineAttributes(xinfo.display, xinfo.gcList[i],
-	              1, LineSolid, CapButt, JoinRound);
+      1, LineSolid, CapButt, JoinRound);
 
    // Graphics context for text, paddle, ball and bricks
    i = 1;
@@ -794,7 +794,7 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
    unsigned long white, black;
 
    if (argc > 1) {                                  // Optional arguments are specified at the command line?
-   	  // Processes all optional argument specified at the command line
+      // Processes all optional argument specified at the command line
       for (int i = 1; i < argc; ++i) {
          string optionalArgument = argv[i];         // Stores the optional argument read in from command line
 
@@ -834,23 +834,23 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
    hints.flags = PPosition | PSize | PMinSize;
 
    xinfo.window = XCreateSimpleWindow( 
-      xinfo.display,	                   // Display where window appears
-      DefaultRootWindow(xinfo.display),  // Window's parent in window tree
-	    hints.x, hints.y,			             // Upper left corner location
-	    hints.width, hints.height,	       // Size of the window
-	    5,						                     // Width of window's border
-	    black,						                 // Window border colour
-	    white);					                   // Window background colour
+      xinfo.display,	                // Display where window appears
+      DefaultRootWindow(xinfo.display), // Window's parent in window tree
+      hints.x, hints.y,			// Upper left corner location
+      hints.width, hints.height,	// Size of the window
+      5,			        // Width of window's border
+      black,			        // Window border colour
+      white);			        // Window background colour
 
    // Initializes the graphics context list.		
    XSetStandardProperties(
-	    xinfo.display,		                 // Display containing the window
-	    xinfo.window,		                   // Window whose properties are set
-	    "Breakout!",		                   // Window's title
-	    "Breakout!",			                 // Icon's title
-	    None,				                       // Pixmap for the icon
-	    argv, argc,			                   // Applications command line args
-	    &hints);			                     // Size hints for the window
+      xinfo.display,		        // Display containing the window
+      xinfo.window,		        // Window whose properties are set
+      "Breakout!",		        // Window's title
+      "Breakout!",			// Icon's title
+      None,				// Pixmap for the icon
+      argv, argc,			// Applications command line args
+      &hints);			        // Size hints for the window
 
    initGCList(xinfo);
 
@@ -887,10 +887,10 @@ void initX(int argc, char *argv[], XInfo &xinfo) {
 
    // Tells the window manager what input events you want.
    XSelectInput(xinfo.display, xinfo.window, 
-                KeyPressMask| ButtonPressMask |
-	              PointerMotionMask | EnterWindowMask |
-	              LeaveWindowMask | StructureNotifyMask |
-	              ExposureMask);
+      KeyPressMask| ButtonPressMask |
+      PointerMotionMask | EnterWindowMask |
+      LeaveWindowMask | StructureNotifyMask |
+      ExposureMask);
 
    // Reduces flickering by not painting the background.
    XSetWindowBackgroundPixmap(xinfo.display, xinfo.window, None);
@@ -910,44 +910,44 @@ void setUpSplashScreenDVector(vector<Displayable *> &dVector, XInfo &xinfo) {
    dVector.push_back(new Title(leftColumnTextMargin, 190, xinfo.display,
       "Breakout!"));
    dVector.push_back(new Text(rightColumnTextMargin, 25, xinfo.display,
-   	  "Objective:"));
+      "Objective:"));
    dVector.push_back(new Text(rightColumnTextMargin, 45, xinfo.display,
-   	  "Destroy all the bricks without letting the ball"));
+      "Destroy all the bricks without letting the ball"));
    dVector.push_back(new Text(rightColumnTextMargin, 65, xinfo.display,
-   	  "touch the bottom of the screen more than three times"));
+      "touch the bottom of the screen more than three times"));
    dVector.push_back(new Text(rightColumnTextMargin, 95, xinfo.display,
-   	  "How To Play:"));
+      "How To Play:"));
    dVector.push_back(new Text(rightColumnTextMargin, 115, xinfo.display,
-   	  "Move the paddle left or right using a mouse or keys"));
+      "Move the paddle left or right using a mouse or keys"));
    dVector.push_back(new Text(rightColumnTextMargin, 135, xinfo.display,
-   	  "on a keyboard to bounce the ball upward"));
+      "on a keyboard to bounce the ball upward"));
    dVector.push_back(new Text(rightColumnTextMargin, 165, xinfo.display,
-   	  "Game Controls:"));
+      "Game Controls:"));
    dVector.push_back(new Text(rightColumnTextMargin, 185, xinfo.display,
-   	  "- Mouse Controls:"));
+      "- Mouse Controls:"));
    dVector.push_back(new Text(rightColumnTextMargin, 205, xinfo.display,
-   	  "Move left - move paddle left"));
+      "Move left - move paddle left"));
    dVector.push_back(new Text(rightColumnTextMargin, 225, xinfo.display,
-   	  "Move right - move paddle right"));
+      "Move right - move paddle right"));
    dVector.push_back(new Text(rightColumnTextMargin, 245, xinfo.display,
-   	  "Click - release ball from paddle"));
+      "Click - release ball from paddle"));
    dVector.push_back(new Text(rightColumnTextMargin, 270, xinfo.display,
-   	  "- Keyboard Controls:"));
+      "- Keyboard Controls:"));
    dVector.push_back(new Text(rightColumnTextMargin, 290, xinfo.display,
-   	  "A - move paddle left"));
+      "A - move paddle left"));
    dVector.push_back(new Text(rightColumnTextMargin, 310, xinfo.display,
-   	  "D - move paddle right"));
+      "D - move paddle right"));
    dVector.push_back(new Text(rightColumnTextMargin, 330, xinfo.display,
-   	  "Space Bar - release ball from paddle"));
+      "Space Bar - release ball from paddle"));
    dVector.push_back(new Text(rightColumnTextMargin, 350, xinfo.display,
-   	  "Escape - quit game"));
+      "Escape - quit game"));
    dVector.push_back(new Text(rightColumnTextMargin, (xinfo.height - 15), xinfo.display,
-   	  "Click anywhere on the screen to start the game"));
+      "Click anywhere on the screen to start the game"));
 } // setUpSplashScreenDVector
 
 // Sets up the bricks region to be displayed on screen.
 void setUpBricksRegion(vector<Displayable *> &dVector,
-	                     vector<Brick *> &bVector, XInfo &xinfo) {
+	               vector<Brick *> &bVector, XInfo &xinfo) {
    // Region dimensions in terms of pixels
    const int rWidth = (xinfo.width - (2 * xinfo.sideMargin));
    const int rHeight = (xinfo.height - (xinfo.topMargin + xinfo.bottomMargin));
@@ -961,10 +961,10 @@ void setUpBricksRegion(vector<Displayable *> &dVector,
 
    // Adds all the bricks to display vector and brick vector
    for (int i = 0; i < xinfo.colSize; ++i) {
-   	  for (int j = 0; j < xinfo.rowSize; ++j) {
-   	  	 const int x = ((j * (bWidth + xinfo.gapDist)) + xinfo.sideMargin);
-   	  	 const int y = ((i * (bHeight + xinfo.gapDist)) + xinfo.topMargin);
-   	  	 const int brickIndex = ((i * xinfo.rowSize) + j);
+      for (int j = 0; j < xinfo.rowSize; ++j) {
+   	 const int x = ((j * (bWidth + xinfo.gapDist)) + xinfo.sideMargin);
+   	 const int y = ((i * (bHeight + xinfo.gapDist)) + xinfo.topMargin);
+   	 const int brickIndex = ((i * xinfo.rowSize) + j);
          const int randNum = rand() % 50;
          char brickType;
          int brickColour;
@@ -977,36 +977,36 @@ void setUpBricksRegion(vector<Displayable *> &dVector,
             brickType = 'n';
          } // if
 
-   	  	if (brickIndex <= ((0 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Red;
-   	  	} else if (brickIndex <= ((1 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Orange;
-   	  	} else if (brickIndex <= ((2 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Yellow;
-   	  	} else if (brickIndex <= ((3 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Green;
-   	  	} else if (brickIndex <= ((4 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = DarkGreen;
-   	  	} else if (brickIndex <= ((5 * xinfo.rowSize) + 14)) {
-   	  	 	brickColour = Blue;
-   	  	} else if (brickIndex <= ((6 * xinfo.rowSize) + 14)) {
+   	 if (brickIndex <= ((0 * xinfo.rowSize) + 14)) {
+   	    brickColour = Red;
+   	 } else if (brickIndex <= ((1 * xinfo.rowSize) + 14)) {
+   	    brickColour = Orange;
+   	 } else if (brickIndex <= ((2 * xinfo.rowSize) + 14)) {
+   	    brickColour = Yellow;
+   	 } else if (brickIndex <= ((3 * xinfo.rowSize) + 14)) {
+   	    brickColour = Green;
+   	 } else if (brickIndex <= ((4 * xinfo.rowSize) + 14)) {
+   	    brickColour = DarkGreen;
+   	 } else if (brickIndex <= ((5 * xinfo.rowSize) + 14)) {
+   	    brickColour = Blue;
+   	 } else if (brickIndex <= ((6 * xinfo.rowSize) + 14)) {
             brickColour = NavyBlue;
-   	  	} else {
-   	  	 	brickColour = DarkMagenta;
-   	  	} // if
+   	 } else {
+   	    brickColour = DarkMagenta;
+   	 } // if
 
-        Brick *newBrick = new Brick(i, j, x, y, bWidth, bHeight, brickColour, brickType, false);
-        dVector.push_back(newBrick);
-        bVector.push_back(newBrick);
-   	  } // for
+         Brick *newBrick = new Brick(i, j, x, y, bWidth, bHeight, brickColour, brickType, false);
+         dVector.push_back(newBrick);
+         bVector.push_back(newBrick);
+      } // for
    } // for
 } // setUpBricksRegion
 
 // Gets current microseconds.
 unsigned long now() {
-	 timeval tv;
-	 gettimeofday(&tv, 0);
-	 return tv.tv_sec * 1000000 + tv.tv_usec;
+   timeval tv;
+   gettimeofday(&tv, 0);
+   return tv.tv_sec * 1000000 + tv.tv_usec;
 } // now
 
 // Handles key press events.
@@ -1016,34 +1016,34 @@ void handleKeyPress(Paddle &paddle, Ball &ball, XInfo &xinfo, XEvent &event,
    char text[BufferSize];
 
    int i = XLookupString( 
-	 (XKeyEvent *)&event, // The keyboard event
-	 text, 					 // Buffer when text will be written
-	 BufferSize, 			 // Size of the text buffer
-	 &key, 					 // Workstation-independent key symbol
-	 0);					    // Pointer to a composeStatus structure (unused)
+      (XKeyEvent *)&event, // The keyboard event
+      text, 		   // Buffer when text will be written
+      BufferSize, 	   // Size of the text buffer
+      &key, 		   // Workstation-independent key symbol
+      0);		   // Pointer to a composeStatus structure (unused)
 
    if (i == 1) {
-	    if (key == XK_Escape) {
-		     quit = true;
-	    } else if (key == XK_a) {
+      if (key == XK_Escape) {
+         quit = true;
+      } else if (key == XK_a) {
          if (!splashScreen) {
-	  	      paddle.follow(xinfo, paddle.getX() - (paddle.getLength() / 3));
-	  	      if (!release) {
-	  	  	     ball.follow(xinfo, paddle.getX() - (ball.getDiameter() / 2));
-	  	      } // if
+	    paddle.follow(xinfo, paddle.getX() - (paddle.getLength() / 3));
+	    if (!release) {
+	       ball.follow(xinfo, paddle.getX() - (ball.getDiameter() / 2));
+	    } // if
          } // if
-	    } else if (key == XK_d) {
+      } else if (key == XK_d) {
          if (!splashScreen) {
             paddle.follow(xinfo, paddle.getX() + (paddle.getLength() / 3));
             if (!release) {
                ball.follow(xinfo, paddle.getX() - (ball.getDiameter() / 2));
             } // if
          } // if
-	    } else if (key == XK_space) {
-	  	   if ((!release) && (!splashScreen)) {
+      } else if (key == XK_space) {
+	 if ((!release) && (!splashScreen)) {
             release = true;
-	  	   } // if
-	    } // if
+	 } // if
+      } // if
    } // if
 } // handleKeyPress
 
@@ -1051,16 +1051,16 @@ void handleKeyPress(Paddle &paddle, Ball &ball, XInfo &xinfo, XEvent &event,
 void handleMotion(Paddle &paddle, Ball &ball, XInfo &xinfo,
                   XEvent &event, bool inside, bool release) {
    if (inside) {
-	    paddle.follow(xinfo, event.xmotion.x);
-	    if (!release) {
-	  	   ball.follow(xinfo, paddle.getX()-(ball.getDiameter() / 2));
-	    } // if
+      paddle.follow(xinfo, event.xmotion.x);
+      if (!release) {
+	  ball.follow(xinfo, paddle.getX()-(ball.getDiameter() / 2));
+      } // if
    } // if
 } // handleMotion
 
 // Handles window resize events.
 void handleResize(vector<Displayable *> &dVector, XInfo &xinfo, XEvent &event,
-	                bool release) {
+	          bool release) {
    XConfigureEvent xce = event.xconfigure;
    
    if (xce.width != xinfo.width || xce.height != xinfo.height) {
@@ -1069,11 +1069,11 @@ void handleResize(vector<Displayable *> &dVector, XInfo &xinfo, XEvent &event,
       double resizedGapDist = xinfo.gapDist * widthResizeFactor;
       
       XFreePixmap(xinfo.display, xinfo.pixmap);
-	    int depth = DefaultDepth(xinfo.display, DefaultScreen(xinfo.display));
-	    xinfo.pixmap = XCreatePixmap(xinfo.display, xinfo.window,
-	  	   xce.width, xce.height, depth);
-	    xinfo.width = xce.width;
-	    xinfo.height = xce.height;
+      int depth = DefaultDepth(xinfo.display, DefaultScreen(xinfo.display));
+      xinfo.pixmap = XCreatePixmap(xinfo.display, xinfo.window,
+	 xce.width, xce.height, depth);
+      xinfo.width = xce.width;
+      xinfo.height = xce.height;
       xinfo.sideMargin = (xinfo.width / 10);
       xinfo.topMargin = xinfo.sideMargin;
       xinfo.bottomMargin = ((xinfo.height / 5) * 3);
@@ -1096,11 +1096,11 @@ void handleResize(vector<Displayable *> &dVector, XInfo &xinfo, XEvent &event,
 
 // Handles animation.
 void handleAnimation(vector<Brick *> &bVector, Paddle &paddle, Ball &ball,
-	                   Score &score, Lives &lives, XInfo &xinfo, bool &release,
+	             Score &score, Lives &lives, XInfo &xinfo, bool &release,
                      bool &quit) {
    if (release) {
-	    ball.move();
-	    ball.checkCollision(bVector, paddle, score, lives, xinfo, release, quit);
+      ball.move();
+      ball.checkCollision(bVector, paddle, score, lives, xinfo, release, quit);
    } // if
 } // handleAnimation
 
@@ -1111,7 +1111,7 @@ void repaint(vector<Displayable *> &dVector, XInfo &xinfo) {
 
    // Draws into the buffer.
    XFillRectangle(xinfo.display, xinfo.pixmap, xinfo.gcList[0], 
-        0, 0, xinfo.width, xinfo.height);
+      0, 0, xinfo.width, xinfo.height);
 
    while (begin != end) {
       Displayable *d = *begin;
@@ -1152,7 +1152,7 @@ void eventLoop(XInfo &xinfo) {
    // Add stuff to paint to the game screen display vector
    Paddle *paddle = new Paddle(xinfo.width/2, xinfo.height - 20, xinfo.width/10, 10);
    Ball *ball = new Ball((xinfo.width/2) - (paddle->getThickness()/2),
-   	  (xinfo.height - 35), paddle->getThickness());
+      (xinfo.height - 35), paddle->getThickness());
    Score *score = new Score(10, 25, (xinfo.rowSize * xinfo.colSize), xinfo.display);
    Lives *lives = new Lives(xinfo.width - 90, 25, xinfo.display);
    gameScreenDVector.push_back(paddle);
@@ -1170,59 +1170,59 @@ void eventLoop(XInfo &xinfo) {
    while(!quit) {
       unsigned long startTime = now();
 
-	    if (XPending(xinfo.display) > 0) {
-		     XNextEvent(xinfo.display, &event);
-		     switch(event.type) {
-		 	      case KeyPress:
-			         handleKeyPress(*paddle, *ball, xinfo, event, release, quit, splashScreen);
-			         break;
-			      case ButtonPress:
-			         if (splashScreen) {
-			   	        splashScreen = false;
-			         } else {
-			   	        release = true;
-			         } // if
-		 	         break;
-			      case EnterNotify:
-			         inside = true;
-			         break;
-			      case LeaveNotify:
-			         inside = false;
-			         break;
-			      case MotionNotify:
-			         if (!splashScreen) {
-			            handleMotion(*paddle, *ball, xinfo, event, inside, release);
-			         } // if
-			         break;
-			      case ConfigureNotify:
-			         if (splashScreen) {
-			   	        handleResize(splashScreenDVector, xinfo, event, release);
-			         } else {
-			   	        handleResize(gameScreenDVector, xinfo, event, release);
-			         } // if
+      if (XPending(xinfo.display) > 0) {
+         XNextEvent(xinfo.display, &event);
+         switch(event.type) {
+	    case KeyPress:
+	       handleKeyPress(*paddle, *ball, xinfo, event, release, quit, splashScreen);
+	       break;
+	    case ButtonPress:
+	       if (splashScreen) {
+	          splashScreen = false;
+	       } else {
+		  release = true;
+	       } // if
+	       break;
+	    case EnterNotify:
+	       inside = true;
+	       break;
+	    case LeaveNotify:
+	       inside = false;
+	       break;
+	    case MotionNotify:
+	       if (!splashScreen) {
+		  handleMotion(*paddle, *ball, xinfo, event, inside, release);
+	       } // if
+	       break;
+	    case ConfigureNotify:
+	       if (splashScreen) {
+	          handleResize(splashScreenDVector, xinfo, event, release);
+	       } else {
+	          handleResize(gameScreenDVector, xinfo, event, release);
+	       } // if
                break;
             case Expose:
                if (event.xexpose.count == 0) {
                	  if (splashScreen) {
                	     repaint(splashScreenDVector, xinfo);
                	  } else {
-               	  	 repaint(gameScreenDVector, xinfo);
+               	     repaint(gameScreenDVector, xinfo);
                	  } // if
                } // if
                break;
-		    } // switch
-	  } // if
+         } // switch
+      } // if
 
-     if (splashScreen) {
-        repaint(splashScreenDVector, xinfo);
-     } else {
-        handleAnimation(bVector, *paddle, *ball, *score, *lives, xinfo, release, quit);
-        repaint(gameScreenDVector, xinfo);
-     } // if
+      if (splashScreen) {
+         repaint(splashScreenDVector, xinfo);
+      } else {
+         handleAnimation(bVector, *paddle, *ball, *score, *lives, xinfo, release, quit);
+         repaint(gameScreenDVector, xinfo);
+      } // if
 	  
-	   if (XPending(xinfo.display) == 0) {
-	  	  usleep(startTime + (1000000/FPS) - now());
-	   } // if
+      if (XPending(xinfo.display) == 0) {
+         usleep(startTime + (1000000/FPS) - now());
+      } // if
    } // while
 
    cleanUp(splashScreenDVector);
@@ -1234,13 +1234,13 @@ void eventLoop(XInfo &xinfo) {
 // Next loop responding to events.
 // Exit forcing window manager to clean up - cheesy, but easy.
 int main (int argc, char *argv[]) {
-	 XInfo xinfo;
-	 initX(argc, argv, xinfo);
-	 eventLoop(xinfo);
-	 XFreeGC(xinfo.display, xinfo.gcList[0]);
-	 XFreeGC(xinfo.display, xinfo.gcList[1]);
-	 XFreePixmap(xinfo.display, xinfo.pixmap);
-	 XUnmapWindow(xinfo.display, xinfo.window);
-	 XDestroyWindow(xinfo.display, xinfo.window);
-	 XCloseDisplay(xinfo.display);
+   XInfo xinfo;
+   initX(argc, argv, xinfo);
+   eventLoop(xinfo);
+   XFreeGC(xinfo.display, xinfo.gcList[0]);
+   XFreeGC(xinfo.display, xinfo.gcList[1]);
+   XFreePixmap(xinfo.display, xinfo.pixmap);
+   XUnmapWindow(xinfo.display, xinfo.window);
+   XDestroyWindow(xinfo.display, xinfo.window);
+   XCloseDisplay(xinfo.display);
 } // main
